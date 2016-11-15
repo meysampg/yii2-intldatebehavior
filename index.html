@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Yii2 IntlDateBehavior by meysampg</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Yii2 IntlDateBehavior</h1>
+      <h2 class="project-tagline">Automatic Change Date System of an ActiveRecord After finding It</h2>
+      <a href="https://github.com/meysampg/yii2-intldatebehavior" class="btn">View on GitHub</a>
+      <a href="https://github.com/meysampg/yii2-intldatebehavior/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/meysampg/yii2-intldatebehavior/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="yii2-intldatebehavior" class="anchor" href="#yii2-intldatebehavior" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Yii2 IntlDateBehavior</h1>
+
+<p><strong>Automatic Change Date System of an ActiveRecord After finding It.</strong> Actually it converts date and time system just on representation and keep your model clean. So if you need a convertor for change time and save it on DB, you can use <a href="https://github.com/meysampg/intldate">IntlDate</a> trait ;).</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>The preferred way to install this extension is through <a href="http://getcomposer.org/download/">composer</a>.</p>
+
+<p>Either run</p>
+
+<div class="highlight highlight-source-shell"><pre>composer require meysampg/yii2-intldatebehavior <span class="pl-s"><span class="pl-pds">"</span>*<span class="pl-pds">"</span></span></pre></div>
+
+<p>or add</p>
+
+<div class="highlight highlight-source-json"><pre><span class="pl-s"><span class="pl-pds">"</span>meysampg/yii2-intldatebehavior<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>*<span class="pl-pds">"</span></span></pre></div>
+
+<p>to the require section of your <code>composer.json</code> file.</p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Once the extension is installed, simply use it in your code by attaching it as a behavior to your ActiveRecord model:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">behaviors</span>()</span>
+<span class="pl-s1">{</span>
+<span class="pl-s1">    <span class="pl-k">return</span> [</span>
+<span class="pl-s1">        <span class="pl-c1">IntlDateBehavior</span><span class="pl-k">::</span>className(),</span>
+<span class="pl-s1">    ];</span>
+<span class="pl-s1">}</span></pre></div>
+
+<p>For default, behavior try to show <code>created_at</code> and <code>updated_at</code> in your desired manner which both of them are <code>timestamp</code>. If you wanna select other attributes, you can assign them to <code>timestampAttributes</code> property.</p>
+
+<h2>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h2>
+
+<p>Configuration of this trait can be on two way. The first one is using Yii2 configuration array, for each model that <code>IntlDateBehavior</code> is attached, configure behavior, for example:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">behaviors</span>()</span>
+<span class="pl-s1">{</span>
+<span class="pl-s1">    <span class="pl-k">return</span> [</span>
+<span class="pl-s1">        [</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>class<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">IntlDateBehavior</span><span class="pl-k">::</span>className(),</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>timestampAttributes<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> [<span class="pl-s"><span class="pl-pds">'</span>create_time<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>update_time<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>another_time<span class="pl-pds">'</span></span>],</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>calendar<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>persian<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>format<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>php:d F Y، H:m:i<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>locale<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>fa<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">        ],</span>
+<span class="pl-s1">    ];</span>
+<span class="pl-s1">}</span></pre></div>
+
+<p>This is a local configuration. If you want to use this behavior in multiple model, you can add it as a behavior to model:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">behaviors</span>()</span>
+<span class="pl-s1">{</span>
+<span class="pl-s1">    <span class="pl-k">return</span> [</span>
+<span class="pl-s1">        <span class="pl-c1">IntlDateBehavior</span><span class="pl-k">::</span>className(),</span>
+<span class="pl-s1">    ];</span>
+<span class="pl-s1">}</span></pre></div>
+
+<p>and put the configurations in <code>params.php</code> file. As an example, here is my <code>params</code>:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">return</span> [</span>
+<span class="pl-s1">    <span class="pl-c">// some params are here</span></span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>dateTimeFormat<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>yyyy/MM/dd, HH:mm:ss<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>dateTimeCalendar<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>persian<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>dateTimeLocale<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>fa<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">];</span>
+<span class="pl-s1"></span></pre></div>
+
+<p>In this way you must assign value to <code>'dateTimeFormat'</code> for date time format, <code>'dateTimeCalendar'</code> calendar system and <code>'dateTimeLocale'</code> for locale of showing date time information.</p>
+
+<h3>
+<a id="supported-calendar" class="anchor" href="#supported-calendar" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Supported Calendar</h3>
+
+<p>Thanks to <a href="https://github.com/meysampg/intldate">intldate</a> and <code>intl</code> extension of php, this behavior supports this calendar:</p>
+
+<ul>
+<li>persian</li>
+<li>gregorian</li>
+<li>japanese</li>
+<li>buddhist</li>
+<li>chinese</li>
+<li>indian</li>
+<li>islamic</li>
+<li>hebrew</li>
+<li>coptic</li>
+<li>ethiopic</li>
+</ul>
+
+<h2>
+<a id="contributions" class="anchor" href="#contributions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributions</h2>
+
+<p>Report bugs or do your modification and send a pull request!</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/meysampg/yii2-intldatebehavior">Yii2 IntlDateBehavior</a> is maintained by <a href="https://github.com/meysampg">meysampg</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
