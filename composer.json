@@ -1,0 +1,22 @@
+{
+    "name": "meysampg/yii2-intldatebehavior",
+    "description": "Automatic Change Date System of an ActiveRecord After finding It",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","intldate","date","activerecord"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Meysam P.G.",
+            "email": "p.g.meysam@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+        "meysampg/intldate": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "meysampg\\behaviors\\": ""
+        }
+    }
+}
