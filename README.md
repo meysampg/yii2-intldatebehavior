@@ -25,7 +25,7 @@ to the require section of your `composer.json` file.
 ## Usage
 
 
-Once the extension is installed, simply use it in your code by attaching it as a behavior to your ActiveRecord model:
+Once the extension is installed, simply use it in your class be `use meysampg\behaviors\IntlDateBehavior` and use it by attaching it as a behavior to your ActiveRecord model:
 
 ```php
 public function behaviors()
