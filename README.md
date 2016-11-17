@@ -35,6 +35,8 @@ public function behaviors()
     ];
 }
 ```
+**Also in your model, you must change the rule of `timestamp` fields from `integer` to `safe`.**
+
 For default, behavior try to show `created_at` and `updated_at` in your desired manner which both of them are `timestamp`. If you wanna select other attributes, you can assign them to `timestampAttributes` property.
 
 ## Configuration
