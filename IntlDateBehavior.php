@@ -135,7 +135,7 @@ class IntlDateBehavior extends AttributeBehavior
             if (isset(Yii::$app->params['dateTimeLocale'])) {
                 $this->locale = Yii::$app->params['dateTimeLocale'];
             } elseif (!is_null(Yii::$app->language)) {
-                $this->lacale = Yii::$app->language;
+                $this->locale = Yii::$app->language;
             } else {
                 $this->locale = 'en';
             }
