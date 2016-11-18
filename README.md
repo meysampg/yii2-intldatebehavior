@@ -1,6 +1,6 @@
 Yii2 IntlDateBehavior
 ==================
-**Automatic Change Date System of an ActiveRecord After finding It.** Actually it converts date and time system just on representation and keep your model clean. So if you need a convertor for change time and save it on DB, you can use [IntlDate](https://github.com/meysampg/intldate) trait ;).
+**Automatic Change Date System of an ActiveRecord After finding It.** Actually it converts date and time system just on representation and keep your model clean. So if you need a converter for change time and save it on DB, you can use [IntlDate](https://github.com/meysampg/intldate) trait ;).
 
 ## Installation
 
@@ -37,11 +37,11 @@ public function behaviors()
 ```
 **Also in your model, you must change the rule of `timestamp` fields from `integer` to `safe`.**
 
-For default, behavior try to show `created_at` and `updated_at` in your desired manner which both of them are `timestamp`. If you wanna select other attributes, you can assign them to `timestampAttributes` property.
+For default, behavior try to show `created_at` and `updated_at` in your desired manner which both of them have `timestamp` type. If you wanna select other attributes, you can assign them as an array (a.e. `['time1', 'time2', 'time3']`) to `timestampAttributes` property.
 
 ## Configuration
 
-Configuration of this trait can be on two way. The first one is using Yii2 configuration array, for each model that `IntlDateBehavior` is attached, configure behavior, for example:
+Configuration of this behavior can be on two way. The first one is using Yii2 configuration array, for example:
 
 ```php
 public function behaviors()
@@ -58,7 +58,7 @@ public function behaviors()
 }
 ```
 
-This is a local configuration. If you want to use this behavior in multiple model, you can add it as a behavior to model:
+This is a local configuration. The second way is when you want to use this behavior in multiple model with same configurations, so you should add it as a behavior to model:
 
 ```php
 public function behaviors()
@@ -69,7 +69,7 @@ public function behaviors()
 }
 ```
 
-and put the configurations in `params.php` file. As an example, here is my `params`:
+and put the configurations in `params.php` file. As an example, here is my `params.php`:
 
 ```php
 <?php
@@ -83,10 +83,10 @@ return [
 
 ```
 
-In this way you must assign value to `'dateTimeFormat'` for date time format, `'dateTimeCalendar'` calendar system and `'dateTimeLocale'` for locale of showing date time information.
+In this way you must assign a value to `'dateTimeFormat'` for date time format, `'dateTimeCalendar'` calendar system and `'dateTimeLocale'` for locale of showing date time information.
 
 ### Supported Calendar
-Thanks to [intldate](https://github.com/meysampg/intldate) and `intl` extension of php, this behavior supports this calendar:
+Thanks to [intldate](https://github.com/meysampg/intldate) and `intl` extension of php, this behavior supports these calendars:
 
  - persian
  - gregorian
