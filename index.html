@@ -22,7 +22,7 @@
       <h1>
 <a id="yii2-intldatebehavior" class="anchor" href="#yii2-intldatebehavior" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Yii2 IntlDateBehavior</h1>
 
-<p><strong>Automatic Change Date System of an ActiveRecord After finding It.</strong> Actually it converts date and time system just on representation and keep your model clean. So if you need a convertor for change time and save it on DB, you can use <a href="https://github.com/meysampg/intldate">IntlDate</a> trait ;).</p>
+<p><strong>Automatic Change Date System of an ActiveRecord After finding It.</strong> Actually it converts date and time system just on representation and keep your model clean. So if you need a converter for change time and save it on DB, you can use <a href="https://github.com/meysampg/intldate">IntlDate</a> trait ;).</p>
 
 <h2>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
@@ -53,12 +53,12 @@
 
 <p><strong>Also in your model, you must change the rule of <code>timestamp</code> fields from <code>integer</code> to <code>safe</code>.</strong></p>
 
-<p>For default, behavior try to show <code>created_at</code> and <code>updated_at</code> in your desired manner which both of them are <code>timestamp</code>. If you wanna select other attributes, you can assign them to <code>timestampAttributes</code> property.</p>
+<p>For default, behavior try to show <code>created_at</code> and <code>updated_at</code> in your desired manner which both of them have <code>timestamp</code> type. If you wanna select other attributes, you can assign them as an array (a.e. <code>['time1', 'time2', 'time3']</code>) to <code>timestampAttributes</code> property.</p>
 
 <h2>
 <a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h2>
 
-<p>Configuration of this trait can be on two way. The first one is using Yii2 configuration array, for each model that <code>IntlDateBehavior</code> is attached, configure behavior, for example:</p>
+<p>Configuration of this behavior can be on two way. The first one is using Yii2 configuration array, for example:</p>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">behaviors</span>()</span>
 <span class="pl-s1">{</span>
@@ -69,11 +69,12 @@
 <span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>calendar<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>persian<span class="pl-pds">'</span></span>,</span>
 <span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>format<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>php:d F Y، H:m:i<span class="pl-pds">'</span></span>,</span>
 <span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>locale<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>fa<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>tz<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Asia/Tehran<span class="pl-pds">'</span></span></span>
 <span class="pl-s1">        ],</span>
 <span class="pl-s1">    ];</span>
 <span class="pl-s1">}</span></pre></div>
 
-<p>This is a local configuration. If you want to use this behavior in multiple model, you can add it as a behavior to model:</p>
+<p>This is a local configuration. The second way is when you want to use this behavior in multiple model with same configurations, so you should add it as a behavior to model:</p>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">behaviors</span>()</span>
 <span class="pl-s1">{</span>
@@ -82,7 +83,7 @@
 <span class="pl-s1">    ];</span>
 <span class="pl-s1">}</span></pre></div>
 
-<p>and put the configurations in <code>params.php</code> file. As an example, here is my <code>params</code>:</p>
+<p>and put the configurations in <code>params.php</code> file. As an example, here is my <code>params.php</code>:</p>
 
 <div class="highlight highlight-text-html-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
 <span class="pl-s1"></span>
@@ -91,15 +92,16 @@
 <span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>dateTimeFormat<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>yyyy/MM/dd, HH:mm:ss<span class="pl-pds">'</span></span>,</span>
 <span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>dateTimeCalendar<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>persian<span class="pl-pds">'</span></span>,</span>
 <span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>dateTimeLocale<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>fa<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>dateTimeZone<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Asia/Tehran<span class="pl-pds">'</span></span>,</span>
 <span class="pl-s1">];</span>
 <span class="pl-s1"></span></pre></div>
 
-<p>In this way you must assign value to <code>'dateTimeFormat'</code> for date time format, <code>'dateTimeCalendar'</code> calendar system and <code>'dateTimeLocale'</code> for locale of showing date time information.</p>
+<p>In this way you must assign a value to <code>'dateTimeFormat'</code> for date time format, <code>'dateTimeCalendar'</code> calendar system, <code>'dateTimeLocale'</code> for locale of showing date time information and <code>'dateTimeZone'</code> for timezone of region where datetime must be shown.</p>
 
 <h3>
 <a id="supported-calendar" class="anchor" href="#supported-calendar" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Supported Calendar</h3>
 
-<p>Thanks to <a href="https://github.com/meysampg/intldate">intldate</a> and <code>intl</code> extension of php, this behavior supports this calendar:</p>
+<p>Thanks to <a href="https://github.com/meysampg/intldate">intldate</a> and <code>intl</code> extension of php, this behavior supports these calendars:</p>
 
 <ul>
 <li>persian</li>
