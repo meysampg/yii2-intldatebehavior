@@ -38,6 +38,11 @@ class IntlDateBehavior extends AttributeBehavior
      */
     public $locale;
 
+    /**
+     * @var string Timezone for showing date and time.
+     */
+    public $tz;
+
     private $calendars = [
         'persian' => 'toPersian',
         'japanese' => 'toJapanese',
@@ -78,6 +83,7 @@ class IntlDateBehavior extends AttributeBehavior
     {
         return $this->fromTimestamp($this->owner->{$event->data})
             ->{$this->calendars[$this->calendar]}($this->locale)
+            ->setFinalTimeZone($this->tz)
             ->asDateTime($this->format);
     }
 
@@ -138,6 +144,15 @@ class IntlDateBehavior extends AttributeBehavior
                 $this->locale = Yii::$app->language;
             } else {
                 $this->locale = 'en';
+            }
+        }
+
+        // Initialize timezone
+        if (!strlen($this->tz)) {
+            if (isset(Yii::$app->params['dateTimeZone'])) {
+                $this->tz = Yii::$app->params['dateTimeZone'];
+            } else {
+                $this->tz = 'UTC';
             }
         }
     }

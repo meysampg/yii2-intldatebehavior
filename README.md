@@ -53,6 +53,7 @@ public function behaviors()
             'calendar' => 'persian',
             'format' => 'php:d F Y، H:m:i',
             'locale' => 'fa',
+            'tz' => 'Asia/Tehran'
         ],
     ];
 }
@@ -79,11 +80,12 @@ return [
     'dateTimeFormat' => 'yyyy/MM/dd, HH:mm:ss',
     'dateTimeCalendar' => 'persian',
     'dateTimeLocale' => 'fa',
+    'dateTimeZone' => 'Asia/Tehran',
 ];
 
 ```
 
-In this way you must assign a value to `'dateTimeFormat'` for date time format, `'dateTimeCalendar'` calendar system and `'dateTimeLocale'` for locale of showing date time information.
+In this way you must assign a value to `'dateTimeFormat'` for date time format, `'dateTimeCalendar'` calendar system, `'dateTimeLocale'` for locale of showing date time information and `'dateTimeZone'` for timezone of region where datetime must be shown.
 
 ### Supported Calendar
 Thanks to [intldate](https://github.com/meysampg/intldate) and `intl` extension of php, this behavior supports these calendars:
