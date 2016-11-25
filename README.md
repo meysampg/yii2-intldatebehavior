@@ -51,7 +51,7 @@ public function behaviors()
             'class' => IntlDateBehavior::className(),
             'timestampAttributes' => ['create_time', 'update_time', 'another_time'],
             'calendar' => 'persian',
-            'format' => 'php:d F Y، H:m:i',
+            'format' => 'php:d F Y، H:i:s',
             'locale' => 'fa',
             'tz' => 'Asia/Tehran'
         ],
