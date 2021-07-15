@@ -1,5 +1,7 @@
 Yii2 IntlDateBehavior
 ==================
+🟥⚠️ _THIS PACKAGE IS ABANDONED. PLEASE SELECT ANOTHER PACKAGE OR FORK THIS REPOSITORY AND INFORM ME ON p.g.meysam [at] gmail [dot] com TO REFFER TO YOUR PACKAGE IN PACKAGIST_ ⚠️🟥
+
 **Automatic Change Date System of an ActiveRecord After finding It.** Actually it converts date and time system just on representation and keep your model clean. So if you need a converter for change time and save it on DB, you can use [IntlDate](https://github.com/meysampg/intldate) trait ;).
 
 ## Installation
